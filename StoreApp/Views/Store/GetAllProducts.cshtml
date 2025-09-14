@@ -4,12 +4,16 @@
 <div class="col-sm-6 mb-3 mb-sm-0">
 	@foreach (var item in @Model)
 	{
-		<div class="card">
+		<div class="card m-3">
 			<div class="card-body">
 				<h5 class="card-title">@item.Name</h5>
 				<h6 class="card-text">@item.Description</h6>
 				<p>@item.Price</p>
-				<a href="#" class="btn btn-primary">Go somewhere</a>
+				<p>@item.CategoryName</p>
+				<div class="flex flex-row">
+					<a href="/Store/DeleteProduct/@item.Id" class="btn btn-danger">Delete</a>
+					<a href="/Store/UpdateProduct/@item.Id" class="btn btn-warning">Update</a>
+				</div>
 			</div>
 		</div>
 	}
