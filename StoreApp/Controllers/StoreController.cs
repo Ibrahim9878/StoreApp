@@ -4,6 +4,7 @@ using StoreApp.Context;
 using StoreApp.Models.Entities.Concretes;
 using StoreApp.ViewModel;
 using StoreApp.ViewModel.CategoyViewModels;
+using StoreApp.ViewModel.OrderViewModels;
 
 namespace StoreApp.Controllers
 {
@@ -27,7 +28,7 @@ namespace StoreApp.Controllers
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
-                CategoryName = p?.Category?.Name
+                CategoryName = _dbContext.Categories.FirstOrDefault(c => c.Id == p.CategoryId)?.Name
             }).ToList();
             return View(prViewModel);
         }
@@ -35,7 +36,7 @@ namespace StoreApp.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
-            var ctViewModel = _dbContext.Categories.Select(c => new CategoryWithProductViewModel
+            var ctViewModel = _dbContext.Categories.Select(c => new GetAllCategoriesViewModels
             {
                 Id = c.Id,
                 Name = c.Name
@@ -78,8 +79,15 @@ namespace StoreApp.Controllers
             {
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price
+                Price = product.Price,
+
             };
+            var ctViewModel = _dbContext.Categories.Select(c => new GetAllCategoriesViewModels
+            {
+                Id = c.Id,
+                Name = c.Name
+            }).ToList();
+            ViewBag.Categories = new SelectList(ctViewModel, "Id", "Name");
             return View(prViewModel);
         }
         [HttpPost]
@@ -91,6 +99,7 @@ namespace StoreApp.Controllers
             product.Name = pr.Name;
             product.Description = pr.Description;
             product.Price = pr.Price;
+            product.CategoryId = pr.CategoryId;
             _dbContext.Products.Update(product);
             _dbContext.SaveChanges();
             return RedirectToAction("GetAllProducts");
@@ -160,5 +169,7 @@ namespace StoreApp.Controllers
         }
 
         #endregion
+
+      
     }
 }

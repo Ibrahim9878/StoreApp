@@ -54,6 +54,7 @@ namespace StoreApp.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
@@ -136,7 +137,8 @@ namespace StoreApp.Migrations
                 {
                     b.HasOne("StoreApp.Models.Entities.Concretes.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Category");
                 });

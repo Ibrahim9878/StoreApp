@@ -12,7 +12,7 @@ using StoreApp.Context;
 namespace StoreApp.Migrations
 {
     [DbContext(typeof(StoreAppDbContext))]
-    [Migration("20250909170123_mig1")]
+    [Migration("20250914115023_mig1")]
     partial class mig1
     {
         /// <inheritdoc />

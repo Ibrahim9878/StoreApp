@@ -8,7 +8,6 @@ namespace StoreApp.ViewModel
         public string? Description { get; set; }
         public float? Price { get; set; }
         public int? CategoryId { get; set; }
-        public string? CategoryName { get; set; }
-        public List<CategoryWithProductViewModel>? Categories { get; set; }
+        public List<GetAllCategoriesViewModels>? Categories { get; set; }
     }
 }

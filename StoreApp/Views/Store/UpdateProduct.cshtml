@@ -1,5 +1,5 @@
 ﻿@model UpdateProductViewModel
-
+@{}
 <h2>Update Product</h2>
 
 <form asp-action="UpdateProduct" method="post">
@@ -19,6 +19,14 @@
         <label asp-for="Description"></label>
         <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <section asp-for="CategoryId" class="form-control">
+            <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+                <option value="">-- Select Category --</option>
+            </select>
+        </section>
     </div>
 
     <button asp-action="UpdateProduct" type="submit" class="btn btn-primary mt-2">Update Product</button>

@@ -28,11 +28,10 @@
 	<div class="form-group">
 		<label asp-for="Category"></label>
 		<section asp-for="Category" class="form-control">
-			<select asp-for="Category" asp-items="ViewBag.Categories" class="form-control">
-				<option value="CategoryId">-- Select Category --</option>
+			<select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+				<option value="">-- Select Category --</option>
 			</select>
 		</section>
-		<span asp-validation-for="Category" class="text-danger"></span>
 	</div>
 
 	<button asp-action="AddProduct" type="submit" class="btn btn-primary mt-2">Add Product</button>
